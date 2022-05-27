@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
             JsonToStr jsonToStr = new JsonToStr();
-            if(SettingsActivity.groupName != null) {
+            if(!SettingsActivity.groupName.equals("не выбрана")) {
                 try {
                     jsonObjTimeTable = jsonToStr.get("https://public.mai.ru/schedule/data/"+md5(SettingsActivity.groupName)+".json");
                 } catch (Exception e) {
