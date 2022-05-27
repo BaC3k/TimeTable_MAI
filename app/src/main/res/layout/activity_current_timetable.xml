@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".info_activity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/LinearLayout3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/currentDay"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_weight="1"
+
+                    android:background="#00AEFF"
+                    android:paddingStart="8sp"
+                    android:paddingTop="8sp"
+                    android:text="Понедельник"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.359"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/toolbarMain" />
+
+                <TextView
+                    android:id="@+id/Para1"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:paddingStart="8sp"
+                    android:paddingTop="8sp"
+                    android:textColor="#070707"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/currentDay" />
+
+                <TextView
+                    android:id="@+id/Para2"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:paddingStart="8sp"
+                    android:paddingTop="8sp"
+                    android:textColor="#070707"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Para1" />
+
+                <TextView
+                    android:id="@+id/Para3"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:paddingStart="8sp"
+                    android:paddingTop="8sp"
+                    android:textColor="#070707"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Para2" />
+
+                <TextView
+                    android:id="@+id/Para4"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:paddingStart="8sp"
+                    android:paddingTop="8sp"
+                    android:textColor="#070707"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Para3" />
+
+                <TextView
+                    android:id="@+id/Para5"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:paddingStart="8sp"
+                    android:paddingTop="8sp"
+                    android:textColor="#070707"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Para4" />
+
+                <TextView
+                    android:id="@+id/Para6"
+                    android:layout_width="match_parent"
+                    android:layout_height="90dp"
+                    android:paddingStart="8sp"
+                    android:paddingTop="8sp"
+                    android:textColor="#070707"
+                    android:textSize="24sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/Para5" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbarMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0095da"
+            android:minHeight="56dp"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+
+
+            app:contentInsetStartWithNavigation="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:maxButtonHeight="56dp"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            app:title="МАИ" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

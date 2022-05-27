@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".info_activity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarMain"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#0095da"
+        android:theme="@style/Theme.AppCompat.NoActionBar"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:title="МАИ"
+
+
+        />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="300dp"
+        android:layout_height="350dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/women" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:contextClickable="false"
+
+        android:elegantTextHeight="false"
+
+
+        android:text="\tК вашему распоряжению предcтавлено расписание МАИ\n\tУчитесь хорошо, не пропускайте занятия и внимательно слушайте преподавателей!\n\tУспехов вам и удачи во всём!\nВерсия приложения: 1.0"
+        android:textColor="#000000"
+        android:textDirection="locale"
+        android:textSize="20sp" />
+
+
+</LinearLayout>
