@@ -5,18 +5,18 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="155dp"
         android:layout_marginTop="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="134dp"
+            android:layout_height="165dp"
             android:layout_marginVertical="10dp"
             android:orientation="horizontal">
 
 
             <LinearLayout
-                android:layout_width="323dp"
+                android:layout_width="286dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="20dp"
                 android:orientation="vertical">
