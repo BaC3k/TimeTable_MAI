@@ -36,6 +36,8 @@ import org.json.JSONObject;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -64,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         jsonParser.execute();
 
 
-       // }
+        // }
 
         sharedPreferences = getSharedPreferences("mPreferences",MODE_PRIVATE);
         String myGroup = "";
@@ -172,31 +174,33 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public class JsonsParser extends AsyncTask<Void, Void, Void> {
         @Override
         protected Void doInBackground(Void... voids) {
+            if(groupsName.size() == 0) {
+                try {
+                    String sJson;
+                    JsonToStr jsonToStr = new JsonToStr();
+                    sJson = jsonToStr.get("https://public.mai.ru/schedule/data/groups.json");
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<ArrayList<HashMap<String, String>>>() {
+                    }.getType();
 
-            try {
-                String sJson;
-                JsonToStr jsonToStr = new JsonToStr();
-                sJson = jsonToStr.get("https://public.mai.ru/schedule/data/groups.json");
-                Gson gson = new Gson();
-                Type type = new TypeToken<ArrayList<HashMap<String, String>>>(){}.getType();
+                    ArrayList<HashMap<String, String>> arrayList = new ArrayList<HashMap<String, String>>();
 
-                ArrayList<HashMap<String,String>> arrayList = new ArrayList<HashMap<String, String>>();
+                    arrayList = gson.fromJson(sJson, type);
 
-                arrayList = gson.fromJson(sJson, type);
-
-                groupsName.clear();
-                for (int i = 0; i < arrayList.size(); i++) {
-                    for (HashMap.Entry<String, String> entry : arrayList.get(i).entrySet()) {
-                        String key = entry.getKey();
-                        String value = entry.getValue();
-                        if (key.equals("name")) {
-                            groupsName.add(value);
+                    groupsName.clear();
+                    for (int i = 0; i < arrayList.size(); i++) {
+                        for (HashMap.Entry<String, String> entry : arrayList.get(i).entrySet()) {
+                            String key = entry.getKey();
+                            String value = entry.getValue();
+                            if (key.equals("name")) {
+                                groupsName.add(value);
+                            }
                         }
                     }
-                }
-            } catch (Exception e) {
-                Log.v("exception", e.toString());
+                } catch (Exception e) {
+                    Log.v("exception", e.toString());
 
+                }
             }
             JsonToStr jsonToStr = new JsonToStr();
             if(!SettingsActivity.groupName.equals("не выбрана")) {
@@ -238,45 +242,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @Override
         protected void onPostExecute(Void s) {
             super.onPostExecute(s);
-                ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, date);
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                spinner.setAdapter(adapter);
-                spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                    @Override
-                    public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                        // your code here
-                        TextView mt = (TextView) selectedItemView;
-                        dateSelected = (String) mt.getText();
-                        discName2.clear();
-                        time_end.clear();
-                        time_start.clear();
-                        lector.clear();
-                        room.clear();
-                        type.clear();
-                        JSONObject jsonObject = null;
-                        try {
-                            jsonObject = new JSONObject(jsonObjTimeTable);
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        try {
-                            printJsonObject(jsonObject, 0);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        if (discName2 != null)
-                            for (int counter = 0; counter <discName2.size(); counter++) {
-                                Log.i("disc1111",(discName2.get(counter)));
-                            }
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_spinner_item, date);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
+            spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                    // your code here
+                    TextView mt = (TextView) selectedItemView;
+                    dateSelected = (String) mt.getText();
+                    discName2.clear();
+                    time_end.clear();
+                    time_start.clear();
+                    lector.clear();
+                    room.clear();
+                    type.clear();
+                    JSONObject jsonObject = null;
+                    try {
+                        jsonObject = new JSONObject(jsonObjTimeTable);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                    try {
+                        printJsonObject(jsonObject, 0);
 
-                    @Override
-                    public void onNothingSelected(AdapterView<?> parentView) {
-                        // your code here
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
+                    if (discName2 != null)
+                        for (int counter = 0; counter <discName2.size(); counter++) {
+                            Log.i("disc1111",(discName2.get(counter)));
+                        }
+                }
 
-                });
+                @Override
+                public void onNothingSelected(AdapterView<?> parentView) {
+                    // your code here
+                }
+
+            });
         }
     }
     static String jsonObjTimeTable;
@@ -306,9 +310,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 printJsonObject2((JSONObject) keyvalue, tmp= lvl+1);
             }
 
-            if (keyvalue instanceof JSONObject) {
-                printJsonObject((JSONObject) keyvalue, tmp = lvl + 1);
-            }
         }
     }
     public void printJsonObject2(JSONObject jsonObj, int lvl) throws JSONException {
@@ -317,20 +318,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String keyStr = it.next();
             Object keyvalue = jsonObj.get(keyStr);
             //for nested objects iteration if required
-                if (lvl == 3)
-                    discName2.add(keyStr);
-                else if (lvl == 4) {
-                    if (keyStr.equals("time_start"))
-                        time_start.add((String) keyvalue);
-                    else if (keyStr.equals("time_end"))
-                        time_end.add((String) keyvalue);
-                    else if (keyStr.equals("lector"))
-                        lector.add((String) ((JSONObject) keyvalue).get((((JSONObject) keyvalue).keys()).next()));
-                    else if (keyStr.equals("type"))
-                        type.add((String) ((((JSONObject) keyvalue).keys()).next()));
-                    else if (keyStr.equals("room"))
-                        room.add((String) ((JSONObject) keyvalue).get((((JSONObject) keyvalue).keys()).next()));
-                }
+            if (lvl == 3)
+                discName2.add(keyStr);
+            else if (lvl == 4) {
+                if (keyStr.equals("time_start"))
+                    time_start.add((String) keyvalue);
+                else if (keyStr.equals("time_end"))
+                    time_end.add((String) keyvalue);
+                else if (keyStr.equals("lector"))
+                    lector.add((String) ((JSONObject) keyvalue).get((((JSONObject) keyvalue).keys()).next()));
+                else if (keyStr.equals("type"))
+                    type.add((String) ((((JSONObject) keyvalue).keys()).next()));
+                else if (keyStr.equals("room"))
+                    room.add((String) ((JSONObject) keyvalue).get((((JSONObject) keyvalue).keys()).next()));
+            }
             int tmp;
             if (keyvalue instanceof JSONObject) {
                 printJsonObject2((JSONObject) keyvalue, tmp = lvl + 1);

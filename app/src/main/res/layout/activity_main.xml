@@ -54,7 +54,7 @@
                         android:layout_alignParentTop="false"
                         android:layout_alignParentBottom="false"
                         android:gravity="center_horizontal"
-                        android:text="Расписание Занятий"
+                        android:text="Расписание занятий"
                         android:textColor="#000000"
                         android:textSize="24sp" />
 
